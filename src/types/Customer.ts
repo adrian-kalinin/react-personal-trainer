@@ -1,5 +1,7 @@
+import Link from "./Link";
+
 type Customer = {
-  id: number;
+  id?: number;
   firstname: string;
   lastname: string;
   streetaddress: string;
@@ -7,6 +9,8 @@ type Customer = {
   city: string;
   email: string;
   phone: string;
+  content: any[];
+  links: Link[];
 };
 
 export default Customer;
