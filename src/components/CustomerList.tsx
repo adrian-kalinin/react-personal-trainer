@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import Customer from "../types/Customer";
+import { Customer } from "../utils/types";
 import { fetchCustomers } from "../utils/api";
 
 const columns: GridColDef[] = [
