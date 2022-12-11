@@ -1,8 +1,9 @@
+import { Dayjs } from "dayjs";
 import Link from "./Link";
 
 type Training = {
   id?: number;
-  date: string;
+  date: Dayjs;
   duration: number;
   activity: string;
   customer: number;
