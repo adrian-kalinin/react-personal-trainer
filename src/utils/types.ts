@@ -23,7 +23,7 @@ export type Training = {
   date: Dayjs;
   duration: number;
   activity: string;
-  customer: number;
+  customer: Customer;
   content: any[];
   links: Link[];
 };
