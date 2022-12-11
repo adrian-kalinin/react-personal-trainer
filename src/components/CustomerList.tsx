@@ -22,7 +22,7 @@ function CustomerList(): JSX.Element {
   }, []);
 
   return (
-    <Box sx={{ height: 800, mt: 3 }}>
+    <Box sx={{ height: 600, mt: 3 }}>
       <DataGrid
         columns={columns}
         rows={customers}
