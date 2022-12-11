@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AppBar, Button, Container, CssBaseline, Toolbar } from "@mui/material";
 
-function Layout() {
+function Layout(): JSX.Element {
   const navigate = useNavigate();
 
   return (
