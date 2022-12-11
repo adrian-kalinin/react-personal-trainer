@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import TrainingList from "./components/TrainingList";
+import CustomerList from "./components/CustomerList";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
-      <h1>Hello, World!</h1>
-      <button onClick={() => setCount(() => count + 1)}>
-        Count is {count}
-      </button>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/customers" element={<CustomerList />} />
+        <Route path="/trainings" element={<TrainingList />} />
+      </Route>
+      <Route path="*" element={<h1>Oops! Page not found...</h1>} />
+    </Routes>
   );
 }
 
