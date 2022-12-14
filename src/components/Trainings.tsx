@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Panel from "./Panel";
 import { Training } from "../utils/types";
-import { fetchTrainings } from "../utils/api";
+import { fetchAllTrainings } from "../utils/api";
 import { trainingColumns } from "../utils/columns";
 
 function Trainings(): JSX.Element {
@@ -11,7 +11,7 @@ function Trainings(): JSX.Element {
   const [selectedTraining, setSelectedTraining] = useState<Training>();
 
   useEffect(() => {
-    fetchTrainings().then((data) => setTrainings(data));
+    fetchAllTrainings().then((data) => setTrainings(data));
   }, []);
 
   return (

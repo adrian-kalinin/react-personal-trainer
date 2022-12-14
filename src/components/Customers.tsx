@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Panel from "./Panel";
 import { Customer } from "../utils/types";
-import { fetchCustomers } from "../utils/api";
+import { fetchAllCustomers } from "../utils/api";
 import { customerColumns } from "../utils/columns";
 
 function Customers(): JSX.Element {
@@ -11,7 +11,7 @@ function Customers(): JSX.Element {
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
 
   useEffect(() => {
-    fetchCustomers().then((data) => setCustomers(data));
+    fetchAllCustomers().then((data) => setCustomers(data));
   }, []);
 
   return (

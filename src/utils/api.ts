@@ -7,7 +7,7 @@ export async function getCustomerByHref(url: string): Promise<Customer> {
   return response.json();
 }
 
-export async function fetchCustomers(): Promise<Customer[]> {
+export async function fetchAllCustomers(): Promise<Customer[]> {
   const response = await fetch(
     "https://customerrest.herokuapp.com/api/customers"
   );
@@ -21,7 +21,7 @@ export async function fetchCustomers(): Promise<Customer[]> {
   return Promise.all(customers);
 }
 
-export async function fetchTrainings(): Promise<Training[]> {
+export async function fetchAllTrainings(): Promise<Training[]> {
   const response = await fetch(
     "https://customerrest.herokuapp.com/api/trainings"
   );
