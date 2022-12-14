@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Training } from "../utils/types";
+import Panel from "./Panel";
+import { Customer, Training } from "../utils/types";
 import { fetchTrainings } from "../utils/api";
 
 const columns: GridColDef[] = [
@@ -31,20 +32,27 @@ const columns: GridColDef[] = [
 
 function TrainingList(): JSX.Element {
   const [trainings, setTrainings] = useState<Training[]>([]);
+  const [selectedTraining, setSelectedTraining] = useState<Training>();
 
   useEffect(() => {
     fetchTrainings().then((data) => setTrainings(data));
   }, []);
 
   return (
-    <Box sx={{ height: 600, mt: 3 }}>
-      <DataGrid
-        columns={columns}
-        rows={trainings}
-        checkboxSelection
-        disableSelectionOnClick
-      />
-    </Box>
+    <>
+      <Box sx={{ height: 600, mt: 3 }}>
+        <DataGrid
+          columns={columns}
+          rows={trainings}
+          onSelectionModelChange={(selection) =>
+            setSelectedTraining(
+              trainings.find((training) => training.id === selection[0])
+            )
+          }
+        />
+      </Box>
+      <Panel selected={!!selectedTraining} />
+    </>
   );
 }
 

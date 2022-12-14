@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import Panel from "./Panel";
 import { Customer } from "../utils/types";
 import { fetchCustomers } from "../utils/api";
 
@@ -16,20 +17,27 @@ const columns: GridColDef[] = [
 
 function CustomerList(): JSX.Element {
   const [customers, setCustomers] = useState<Customer[]>([]);
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
 
   useEffect(() => {
     fetchCustomers().then((data) => setCustomers(data));
   }, []);
 
   return (
-    <Box sx={{ height: 600, mt: 3 }}>
-      <DataGrid
-        columns={columns}
-        rows={customers}
-        checkboxSelection
-        disableSelectionOnClick
-      />
-    </Box>
+    <>
+      <Box sx={{ height: 600, mt: 3 }}>
+        <DataGrid
+          columns={columns}
+          rows={customers}
+          onSelectionModelChange={(selection) =>
+            setSelectedCustomer(
+              customers.find((customer) => customer.id === selection[0])
+            )
+          }
+        />
+      </Box>
+      <Panel selected={!!selectedCustomer} />
+    </>
   );
 }
 
