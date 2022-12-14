@@ -20,6 +20,7 @@
   "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": ["error"],
-    "jsx-a11y/href-no-hash": [0]
+    "jsx-a11y/href-no-hash": [0],
+    "react/jsx-no-bind": [0]
   }
 }
