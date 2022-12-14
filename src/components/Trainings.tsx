@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Panel from "./Panel";
-import { Customer, Training } from "../utils/types";
+import { Training } from "../utils/types";
 import { fetchTrainings } from "../utils/api";
 
 const columns: GridColDef[] = [
