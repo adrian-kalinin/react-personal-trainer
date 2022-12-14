@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Panel from "./Panel";
 import { Customer } from "../utils/types";
 import { fetchCustomers } from "../utils/api";
-
-const columns: GridColDef[] = [
-  { field: "firstname", headerName: "First Name", flex: 1 },
-  { field: "lastname", headerName: "Last Name", flex: 1 },
-  { field: "streetaddress", headerName: "Street Address", flex: 1 },
-  { field: "postcode", headerName: " Post Code", flex: 1 },
-  { field: "city", headerName: "City", flex: 1 },
-  { field: "email", headerName: "Email", flex: 1 },
-  { field: "phone", headerName: "Phone", flex: 1 },
-];
+import { customerColumns } from "../utils/columns";
 
 function Customers(): JSX.Element {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -27,7 +18,7 @@ function Customers(): JSX.Element {
     <>
       <Box sx={{ height: 600, mt: 3 }}>
         <DataGrid
-          columns={columns}
+          columns={customerColumns}
           rows={customers}
           onSelectionModelChange={(selection) =>
             setSelectedCustomer(
