@@ -30,7 +30,7 @@ const columns: GridColDef[] = [
   },
 ];
 
-function TrainingList(): JSX.Element {
+function Trainings(): JSX.Element {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [selectedTraining, setSelectedTraining] = useState<Training>();
 
@@ -56,4 +56,4 @@ function TrainingList(): JSX.Element {
   );
 }
 
-export default TrainingList;
+export default Trainings;

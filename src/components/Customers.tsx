@@ -15,7 +15,7 @@ const columns: GridColDef[] = [
   { field: "phone", headerName: "Phone", flex: 1 },
 ];
 
-function CustomerList(): JSX.Element {
+function Customers(): JSX.Element {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
 
@@ -41,4 +41,4 @@ function CustomerList(): JSX.Element {
   );
 }
 
-export default CustomerList;
+export default Customers;
