@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Panel from "./Panel";
 import { Training } from "../utils/types";
-import { fetchAllTrainings } from "../utils/api";
+import { deleteTraining, fetchAllTrainings } from "../utils/api";
 import { trainingColumns } from "../utils/columns";
 
 function Trainings(): JSX.Element {
@@ -13,6 +13,17 @@ function Trainings(): JSX.Element {
   useEffect(() => {
     fetchAllTrainings().then((data) => setTrainings(data));
   }, []);
+
+  function deleteSelectedTraining() {
+    if (selectedTraining) {
+      deleteTraining(selectedTraining).then(() => {
+        setTrainings(
+          trainings.filter((training) => training !== selectedTraining)
+        );
+        setSelectedTraining(undefined);
+      });
+    }
+  }
 
   return (
     <>
@@ -27,7 +38,11 @@ function Trainings(): JSX.Element {
           }
         />
       </Box>
-      <Panel selected={!!selectedTraining} />
+      <Panel
+        selected={!!selectedTraining}
+        onDelete={deleteSelectedTraining}
+        editable={false}
+      />
     </>
   );
 }

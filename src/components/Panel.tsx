@@ -16,7 +16,7 @@ function Panel(props: PanelProps): JSX.Element {
         transform: "translateX(-50%)",
       }}
     >
-      {props.selected && (
+      {props.selected && props.editable && (
         <Fab color="secondary">
           <EditIcon />
         </Fab>
@@ -25,7 +25,7 @@ function Panel(props: PanelProps): JSX.Element {
         <AddIcon />
       </Fab>
       {props.selected && (
-        <Fab color="error">
+        <Fab color="error" onClick={props.onDelete}>
           <DeleteIcon />
         </Fab>
       )}

@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Panel from "./Panel";
 import { Customer } from "../utils/types";
-import { fetchAllCustomers } from "../utils/api";
+import { deleteCustomer, fetchAllCustomers } from "../utils/api";
 import { customerColumns } from "../utils/columns";
 
 function Customers(): JSX.Element {
@@ -13,6 +13,17 @@ function Customers(): JSX.Element {
   useEffect(() => {
     fetchAllCustomers().then((data) => setCustomers(data));
   }, []);
+
+  function deleteSelectedCustomer() {
+    if (selectedCustomer) {
+      deleteCustomer(selectedCustomer).then(() => {
+        setCustomers(
+          customers.filter((customer) => customer !== selectedCustomer)
+        );
+        setSelectedCustomer(undefined);
+      });
+    }
+  }
 
   return (
     <>
@@ -27,7 +38,11 @@ function Customers(): JSX.Element {
           }
         />
       </Box>
-      <Panel selected={!!selectedCustomer} />
+      <Panel
+        selected={!!selectedCustomer}
+        onDelete={deleteSelectedCustomer}
+        editable
+      />
     </>
   );
 }

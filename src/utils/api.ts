@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { Customer, Training } from "./types";
 import { getHrefByRel, getIdByRel } from "./helpers";
 
-export async function getCustomerByHref(url: string): Promise<Customer> {
+export async function fetchCustomer(url: string): Promise<Customer> {
   const response = await fetch(url);
   return response.json();
 }
@@ -31,8 +31,26 @@ export async function fetchAllTrainings(): Promise<Training[]> {
     ...training,
     id: getIdByRel(training.links, "self"),
     date: dayjs(training.date),
-    customer: await getCustomerByHref(getHrefByRel(training.links, "customer")),
+    customer: await fetchCustomer(getHrefByRel(training.links, "customer")),
   }));
 
   return Promise.all(trainings);
+}
+
+export async function deleteCustomer(customer: Customer) {
+  await fetch(
+    `https://customerrest.herokuapp.com/api/customers/${customer.id}`,
+    {
+      method: "DELETE",
+    }
+  );
+}
+
+export async function deleteTraining(training: Training) {
+  await fetch(
+    `https://customerrest.herokuapp.com/api/training/${training.id}`,
+    {
+      method: "DELETE",
+    }
+  );
 }
