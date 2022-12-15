@@ -5,10 +5,12 @@ import Panel from "./Panel";
 import { Customer } from "../utils/types";
 import { deleteCustomer, fetchAllCustomers } from "../utils/api";
 import { customerColumns } from "../utils/columns";
+import CustomerCreate from "./CustomerCreate";
 
 function Customers(): JSX.Element {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchAllCustomers().then((data) => setCustomers(data));
@@ -17,9 +19,11 @@ function Customers(): JSX.Element {
   function deleteSelectedCustomer() {
     if (selectedCustomer) {
       deleteCustomer(selectedCustomer).then(() => {
-        setCustomers(
-          customers.filter((customer) => customer !== selectedCustomer)
-        );
+        setCustomers([
+          ...customers.filter(
+            (customer) => customer.id !== selectedCustomer.id
+          ),
+        ]);
         setSelectedCustomer(undefined);
       });
     }
@@ -38,9 +42,16 @@ function Customers(): JSX.Element {
           }
         />
       </Box>
+      <CustomerCreate
+        isDialogOpen={isCreateDialogOpen}
+        setIsDialogOpen={setIsCreateDialogOpen}
+        customers={customers}
+        setCustomers={setCustomers}
+      />
       <Panel
         selected={!!selectedCustomer}
         onDelete={deleteSelectedCustomer}
+        setIsCreateDialogOpen={setIsCreateDialogOpen}
         editable
       />
     </>

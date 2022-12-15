@@ -15,7 +15,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { PanelProps } from "../utils/props";
 
 function Panel(props: PanelProps): JSX.Element {
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false);
 
   function openDeleteDialog() {
     setIsDeleteDialogOpen(true);
@@ -46,7 +46,11 @@ function Panel(props: PanelProps): JSX.Element {
             <EditIcon />
           </Fab>
         )}
-        <Fab sx={{ mx: 2 }} color="primary">
+        <Fab
+          sx={{ mx: 2 }}
+          color="primary"
+          onClick={() => props.setIsCreateDialogOpen(true)}
+        >
           <AddIcon />
         </Fab>
         {props.selected && (
@@ -72,7 +76,7 @@ function Panel(props: PanelProps): JSX.Element {
           </Button>
           <Button
             onClick={confirmDeleteDialog}
-            color="warning"
+            color="error"
             variant="contained"
             autoFocus
           >

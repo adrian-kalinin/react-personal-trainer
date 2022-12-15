@@ -14,8 +14,8 @@ export type Customer = {
   city: string;
   email: string;
   phone: string;
-  content: any[];
-  links: Link[];
+  content?: any[];
+  links?: Link[];
 };
 
 export type Training = {
