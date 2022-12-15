@@ -1,9 +1,12 @@
 {
   "name": "react-personal-trainer",
   "version": "0.0.1",
+  "homepage": "https://adrian-kalinin.github.io/react-personal-trainer",
   "private": true,
   "type": "module",
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "build": "tsc && vite build",
     "dev": "vite",
     "preview": "vite preview"
@@ -15,6 +18,7 @@
     "@mui/material": "^5.10.17",
     "@mui/x-data-grid": "^5.17.14",
     "dayjs": "^1.11.7",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.5"

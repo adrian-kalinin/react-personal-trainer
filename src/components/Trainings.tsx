@@ -9,6 +9,7 @@ import { trainingColumns } from "../utils/columns";
 function Trainings(): JSX.Element {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [selectedTraining, setSelectedTraining] = useState<Training>();
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchAllTrainings().then((data) => setTrainings(data));
@@ -41,6 +42,7 @@ function Trainings(): JSX.Element {
       <Panel
         selected={!!selectedTraining}
         onDelete={deleteSelectedTraining}
+        setIsCreateDialogOpen={setIsCreateDialogOpen}
         editable={false}
       />
     </>
