@@ -1,7 +1,6 @@
 {
   "name": "react-personal-trainer",
   "version": "0.0.1",
-  "homepage": "https://adrian-kalinin.github.io/react-personal-trainer",
   "private": true,
   "type": "module",
   "scripts": {
