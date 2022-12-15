@@ -48,7 +48,7 @@ export async function deleteCustomer(customer: Customer) {
 
 export async function deleteTraining(training: Training) {
   await fetch(
-    `https://customerrest.herokuapp.com/api/training/${training.id}`,
+    `https://customerrest.herokuapp.com/api/trainings/${training.id}`,
     {
       method: "DELETE",
     }
